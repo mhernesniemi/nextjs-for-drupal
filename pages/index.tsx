@@ -1,6 +1,7 @@
 import Head from "next/head"
 import { GetStaticPropsResult } from "next"
 import { DrupalNode } from "next-drupal"
+import { DrupalJsonApiParams } from "drupal-jsonapi-params"
 
 import { drupal } from "lib/drupal"
 import { Layout } from "components/layout"
@@ -40,16 +41,25 @@ export default function IndexPage({ nodes }: IndexPageProps) {
 export async function getStaticProps(
   context
 ): Promise<GetStaticPropsResult<IndexPageProps>> {
+
+  // Fetch all articles sorted by the user.
   const nodes = await drupal.getResourceCollectionFromContext<DrupalNode[]>(
     "node--article",
     context,
     {
-      params: {
-        "filter[status]": 1,
-        "fields[node--article]": "title,path,field_media_image,uid,created",
-        include: "field_media_image,uid",
-        sort: "-created",
-      },
+      params: new DrupalJsonApiParams()
+        .addInclude(["field_media_image.field_media_image", "uid.user_picture"])
+        .addFields("node--article", [
+          "title",
+          "path",
+          "field_media_image",
+          "status",
+          "created",
+        ])
+        .addFields("media--image", ["field_media_image"])
+        .addFields("file--file", ["uri", "resourceIdObjMeta"])
+        .addSort("created", "DESC")
+        .getQueryObject(),
     }
   )
 

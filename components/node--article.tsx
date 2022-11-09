@@ -8,6 +8,7 @@ interface NodeArticleProps {
 }
 
 export function NodeArticle({ node, ...props }: NodeArticleProps) {
+  console.log(node)
   return (
     <article {...props}>
       <h1 className="mb-4 text-6xl font-black leading-tight">{node.title}</h1>
@@ -23,9 +24,9 @@ export function NodeArticle({ node, ...props }: NodeArticleProps) {
       {node.field_media_image && (
         <figure>
           <Image
-            src={absoluteUrl(node.field_media_image.uri.url)}
-            width={768}
-            height={400}
+            src={absoluteUrl(node.field_media_image.field_media_image.uri.url)}
+            width={400}
+            height={200}
             layout="responsive"
             objectFit="cover"
             alt={node.field_media_image.resourceIdObjMeta.alt}

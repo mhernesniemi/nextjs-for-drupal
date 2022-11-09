@@ -2,6 +2,7 @@ import * as React from "react"
 import { GetStaticPathsResult, GetStaticPropsResult } from "next"
 import Head from "next/head"
 import { DrupalNode } from "next-drupal"
+import { DrupalJsonApiParams } from "drupal-jsonapi-params"
 
 import { drupal } from "lib/drupal"
 import { NodeArticle } from "components/node--article"
@@ -49,18 +50,24 @@ export async function getStaticProps(
 
   const type = path.jsonapi.resourceName
 
-  let params = {}
-  if (type === "node--article") {
-    params = {
-      include: "field_media_image,uid",
-    }
-  }
-
   const resource = await drupal.getResourceFromContext<DrupalNode>(
     path,
-    context,
+    context, type === "node--article" &&
     {
-      params,
+      params: new DrupalJsonApiParams()
+      .addInclude(["field_media_image.field_media_image", "uid.user_picture"])
+      .addFields("node--article", [
+        "title",
+        "path",
+        "field_media_image",
+        "status",
+        "created",
+        "body",
+      ])
+      .addFields("media--image", ["field_media_image"])
+      .addFields("file--file", ["uri", "resourceIdObjMeta"])
+      .addSort("created", "DESC")
+      .getQueryObject(),
     }
   )
 

@@ -9,7 +9,7 @@ interface NodeArticleTeaserProps {
 }
 
 export function NodeArticleTeaser({ node, ...props }: NodeArticleTeaserProps) {
-  {{console.log(node)}}
+  {{console.log(node.field_media_image)}}
   return (
     <article {...props}>
       <Link href={node.path.alias} passHref>
@@ -26,10 +26,10 @@ export function NodeArticleTeaser({ node, ...props }: NodeArticleTeaserProps) {
         ) : null}
         <span> - {formatDate(node.created)}</span>
       </div>
-      {/* {node.field_media_image && (
+      {node.field_media_image && (
         <figure className="my-4">
           <Image
-            src={absoluteUrl(node.field_media_image.uri.url)}
+            src={absoluteUrl(node.field_media_image.field_media_image.uri.url)}
             width={768}
             height={480}
             layout="responsive"
@@ -37,7 +37,7 @@ export function NodeArticleTeaser({ node, ...props }: NodeArticleTeaserProps) {
             alt={node.field_media_image.resourceIdObjMeta.alt}
           />
         </figure>
-      )} */}
+      )}
       <Link href={node.path.alias} passHref>
         <a className="inline-flex items-center px-6 py-2 border border-gray-600 rounded-full hover:bg-gray-100">
           Read article
