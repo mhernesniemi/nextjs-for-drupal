@@ -1,14 +1,14 @@
-import Head from "next/head"
-import { GetStaticPropsResult } from "next"
-import { DrupalNode } from "next-drupal"
-import { DrupalJsonApiParams } from "drupal-jsonapi-params"
+import Head from "next/head";
+import { GetStaticPropsResult } from "next";
+import { DrupalNode } from "next-drupal";
+import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 
-import { drupal } from "lib/drupal"
-import { Layout } from "components/layout"
-import { NodeArticleTeaser } from "components/node--article--teaser"
+import { drupal } from "lib/drupal";
+import { Layout } from "components/layout";
+import { NodeArticleTeaser } from "components/node--article--teaser";
 
 interface IndexPageProps {
-  nodes: DrupalNode[]
+  nodes: DrupalNode[];
 }
 
 export default function IndexPage({ nodes }: IndexPageProps) {
@@ -35,13 +35,12 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         )}
       </div>
     </Layout>
-  )
+  );
 }
 
 export async function getStaticProps(
   context
 ): Promise<GetStaticPropsResult<IndexPageProps>> {
-
   // Fetch all articles sorted by the user.
   const nodes = await drupal.getResourceCollectionFromContext<DrupalNode[]>(
     "node--article",
@@ -61,11 +60,12 @@ export async function getStaticProps(
         .addSort("created", "DESC")
         .getQueryObject(),
     }
-  )
+  );
 
   return {
     props: {
       nodes,
     },
-  }
+    revalidate: 10, // Activates ISR with max of once in 10 seconds.
+  };
 }
