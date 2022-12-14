@@ -5,11 +5,14 @@ import { DrupalNode } from "next-drupal";
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 
 import { drupal } from "lib/drupal";
-import { Layout } from "components/layout";
-import { NodeArticleTeaser } from "components/node--article--teaser";
+import { Layout } from "templates/layout";
+import { NodeArticleTeaser } from "templates/node--article--teaser";
 
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
+
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 interface IndexPageProps {
   nodes: DrupalNode[];
@@ -33,7 +36,6 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         />
       </Head>
 
-      <h2>Search</h2>
       <InstantSearch
         indexName="dev_drupal"
         searchClient={searchClient}
@@ -42,8 +44,34 @@ export default function IndexPage({ nodes }: IndexPageProps) {
           search.search();
         }}
       >
-        <SearchBox />
-        {query && <Hits />}
+        <SearchBox
+          submitIconComponent={() => (
+            <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+              <MagnifyingGlassIcon className="w-6 h-6 text-black" />
+            </div>
+          )}
+          resetIconComponent={() => null}
+          classNames={{
+            root: "relative",
+            form: "flex mb-3",
+            input:
+              "py-3 px-12 m-1 w-full border-2 border-gray-400 placeholder:text-black rounded",
+          }}
+          placeholder={"Quick search"}
+        />
+        {query && (
+          <div className="p-2 border">
+            <Hits
+              hitComponent={(data: { hit: any }) => (
+                <div>
+                  <div className="py-1 my-1">
+                    <Link href={data.hit.url}>{data.hit.title}</Link>
+                  </div>
+                </div>
+              )}
+            />
+          </div>
+        )}
       </InstantSearch>
 
       <div>
@@ -72,13 +100,18 @@ export async function getStaticProps(
     context,
     {
       params: new DrupalJsonApiParams()
-        .addInclude(["field_media_image.field_media_image", "uid.user_picture"])
+        .addInclude([
+          "field_media_image.field_media_image",
+          "uid.user_picture",
+          "field_paragraphs",
+        ])
         .addFields("node--article", [
           "title",
           "path",
           "field_media_image",
           "status",
           "created",
+          "field_paragraphs",
         ])
         .addFields("media--image", ["field_media_image"])
         .addFields("file--file", ["uri", "resourceIdObjMeta"])
@@ -91,6 +124,6 @@ export async function getStaticProps(
     props: {
       nodes,
     },
-    revalidate: 10, // Activates ISR with max once in 10 seconds.
+    revalidate: 10, // Activates ISR with 10 seconds period.
   };
 }

@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./templates/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {},
@@ -10,5 +11,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography")],
-}
+  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
+};

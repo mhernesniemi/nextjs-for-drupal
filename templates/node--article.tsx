@@ -1,14 +1,14 @@
-import Image from "next/image"
-import { DrupalNode } from "next-drupal"
+import Image from "next/image";
+import { DrupalNode } from "next-drupal";
 
-import { absoluteUrl, formatDate } from "lib/utils"
+import { absoluteUrl, formatDate } from "lib/utils";
+import Paragraph from "components/paragraph/paragraph";
 
 interface NodeArticleProps {
-  node: DrupalNode
+  node: DrupalNode;
 }
 
 export function NodeArticle({ node, ...props }: NodeArticleProps) {
-  console.log(node)
   return (
     <article {...props}>
       <h1 className="mb-4 text-6xl font-black leading-tight">{node.title}</h1>
@@ -27,8 +27,6 @@ export function NodeArticle({ node, ...props }: NodeArticleProps) {
             src={absoluteUrl(node.field_media_image.field_media_image.uri.url)}
             width={400}
             height={200}
-            layout="responsive"
-            objectFit="cover"
             alt={node.field_media_image.resourceIdObjMeta.alt}
             priority
           />
@@ -45,6 +43,13 @@ export function NodeArticle({ node, ...props }: NodeArticleProps) {
           className="mt-6 font-serif text-xl leading-loose prose"
         />
       )}
+      {node.field_paragraphs.map((paragraph, index) => {
+        return (
+          <div key={index}>
+            <Paragraph fields={paragraph} />
+          </div>
+        );
+      })}
     </article>
-  )
+  );
 }
