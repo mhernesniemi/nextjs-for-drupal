@@ -12,7 +12,7 @@ A simple starter for building your site with Next.js and Drupal.
 
 Backend is served externaly from Pantheon by default (see .env).
 
-Front end is running in Vercel https://nextjs-for-drupal.vercel.app/ and Netlify https://superb-syrniki-5494f8.netlify.app/ These have CI with the GitHub repo.
+Next.js is running in Vercel https://nextjs-for-drupal.vercel.app/ and Netlify https://superb-syrniki-5494f8.netlify.app/ These have CI with the GitHub repo.
 
 Search is running as SaaS by Algolia.
 
