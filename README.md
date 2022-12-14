@@ -4,12 +4,14 @@ A simple starter for building your site with Next.js and Drupal.
 
 ## How to use
 
-`npx create-next-app -e https://github.com/chapter-three/next-drupal-basic-starter`
+- Copy and rename .env.example as .env.local
+- Install node packages by running `yarn`
+- Start dev mode by `yarn dev` or preview built project with `yarn preview`
 
-## Deploy to Vercel
+## Hosting
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fchapter-three%2Fnext-drupal-basic-starter&env=NEXT_PUBLIC_DRUPAL_BASE_URL,NEXT_IMAGE_DOMAIN,DRUPAL_PREVIEW_SECRET,DRUPAL_CLIENT_ID,DRUPAL_CLIENT_SECRET&envDescription=Learn%20more%20about%20environment%20variables&envLink=https%3A%2F%2Fnext-drupal.org%2Fdocs%2Fenvironment-variables&project-name=next-drupal&demo-title=Next.js%20for%20Drupal&demo-description=A%20next-generation%20front-end%20for%20your%20Drupal%20site.&demo-url=https%3A%2F%2Fdemo.next-drupal.org&demo-image=https%3A%2F%2Fnext-drupal.org%2Fimages%2Fdemo-screenshot.jpg)
+Backend is served externaly from pantheon by default (see .env).
 
-## Documentation
+Front end is running in Vercel https://nextjs-for-drupal.vercel.app/ and Netlify https://superb-syrniki-5494f8.netlify.app/ These have CI with the GitHub repo.
 
-See https://next-drupal.org
+Search is running as SaaS by Algolia.
