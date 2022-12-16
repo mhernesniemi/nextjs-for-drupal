@@ -3,6 +3,7 @@ import Link from "next/link";
 import { DrupalNode } from "next-drupal";
 
 import { absoluteUrl, formatDate } from "lib/utils";
+import Button from "components/button/button";
 
 interface NodeArticleTeaserProps {
   node: DrupalNode;
@@ -37,24 +38,9 @@ export function NodeArticleTeaser({ node, ...props }: NodeArticleTeaserProps) {
           />
         </figure>
       )}
-      <Link
-        href={node.path.alias}
-        passHref
-        className="inline-flex items-center px-6 py-2 border border-gray-600 rounded-full hover:bg-gray-100"
-      >
+      <Button type="primary" url={node.path.alias}>
         Read article
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="w-4 h-4 ml-2"
-        >
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </Link>
+      </Button>
     </article>
   );
 }

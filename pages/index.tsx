@@ -1,31 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import { GetStaticPropsResult } from "next";
 import { DrupalNode } from "next-drupal";
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
-
 import { drupal } from "lib/drupal";
 import { Layout } from "templates/layout";
 import { NodeArticleTeaser } from "templates/node--article--teaser";
-
-import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
-
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import Button from "components/button/button";
+import Heading from "components/heading/heading";
+import Select from "components/forms/select";
+import Dropdown from "components/dropdown/dropdown";
+import QuickSearch from "components/quick-search/quick-search";
 
 interface IndexPageProps {
   nodes: DrupalNode[];
 }
 
-const searchClient = algoliasearch(
-  "58NWKEWOD3",
-  "d6294d58b80ff92aac3326e8c616b3fb"
-);
-
 export default function IndexPage({ nodes }: IndexPageProps) {
-  const [query, setQuery] = useState("");
-
   return (
     <Layout>
       <Head>
@@ -36,46 +27,71 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         />
       </Head>
 
-      <InstantSearch
-        indexName="dev_drupal"
-        searchClient={searchClient}
-        searchFunction={function (search) {
-          setQuery(search.state.query);
-          search.search();
-        }}
-      >
-        <SearchBox
-          submitIconComponent={() => (
-            <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-              <MagnifyingGlassIcon className="w-6 h-6 text-black" />
-            </div>
-          )}
-          resetIconComponent={() => null}
-          classNames={{
-            root: "relative",
-            form: "flex mb-3",
-            input:
-              "py-3 px-12 m-1 w-full border-2 border-gray-400 placeholder:text-black rounded",
-          }}
-          placeholder={"Quick search"}
-        />
-        {query && (
-          <div className="p-2 border">
-            <Hits
-              hitComponent={(data: { hit: any }) => (
-                <div>
-                  <div className="py-1 my-1">
-                    <Link href={data.hit.url}>{data.hit.title}</Link>
-                  </div>
-                </div>
-              )}
-            />
-          </div>
-        )}
-      </InstantSearch>
+      <QuickSearch />
+
+      <Heading level="h2" size="large">
+        Select
+      </Heading>
+
+      <Select label="Label" />
+
+      <Heading level="h2" size="large">
+        Dropdown
+      </Heading>
+
+      <Dropdown />
+
+      <Heading level="h2" size="large">
+        Form button
+      </Heading>
+
+      <div className="flex gap-2 mb-5">
+        <Button type="primary">Primary</Button>
+        <Button type="secondary">Secondary</Button>
+        <Button type="outlined">Outlined</Button>
+        <Button type="disabled">Disabled</Button>
+      </div>
+
+      <Heading level="h2" size="large">
+        Button as link
+      </Heading>
+
+      <div className="flex gap-2 mb-5">
+        <Button url="#" type="primary">
+          Primary
+        </Button>
+        <Button url="#" type="secondary">
+          Secondary
+        </Button>
+        <Button url="#" type="outlined">
+          Outlined
+        </Button>
+        <Button url="#" type="disabled">
+          Disabled
+        </Button>
+      </div>
+
+      <Heading level="h2" size="large">
+        Heading
+      </Heading>
+
+      <Heading level="h1" size="xl">
+        Heading
+      </Heading>
+      <Heading level="h2" size="large">
+        Heading
+      </Heading>
+      <Heading level="h3" size="medium">
+        Heading
+      </Heading>
+      <Heading level="h4" size="small">
+        Heading
+      </Heading>
 
       <div>
-        <h1 className="mb-10 text-6xl font-black">Latest Articles</h1>
+        <Heading level="h1" size="xl">
+          Latest Articles
+        </Heading>
         {nodes?.length ? (
           nodes.map((node) => (
             <div key={node.id}>

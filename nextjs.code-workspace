@@ -17,6 +17,7 @@
     "editor.wordWrapColumn": 80,
     "editor.wordWrap": "off",
     "editor.detectIndentation": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "headwind.runOnSave": true
   }
 }

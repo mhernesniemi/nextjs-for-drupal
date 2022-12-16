@@ -1,5 +1,5 @@
-import Infobox from "components/infobox/infobox";
-import Liftup from "components/liftup/liftup";
+import ComponentExampleFirst from "components/component-example-first/component-example-first";
+import ComponentExampleSecond from "components/component-example-second/component-example-second";
 
 interface ParagraphProps {
   fields: any;
@@ -9,10 +9,13 @@ export default function Paragraph({ fields }: ParagraphProps) {
   return (
     <>
       {fields.type === "paragraph--infobox" && (
-        <Infobox title={fields.field_title} body={fields.field_body} />
+        <ComponentExampleFirst
+          title={fields.field_title}
+          body={fields.field_body}
+        />
       )}
       {fields.type === "paragraph--liftup" && (
-        <Liftup content={fields.field_content} />
+        <ComponentExampleSecond content={fields.field_content} />
       )}
     </>
   );
