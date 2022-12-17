@@ -1,11 +1,42 @@
+import classNames from "classnames";
+
 interface NotificationProps {
-  propertyName?: string;
+  message: string;
+  type?: "standard" | "error" | "success" | "warning";
 }
 
-export default function Notification({}: NotificationProps) {
+export default function Notification({
+  message,
+  type = "standard",
+}: NotificationProps) {
   return (
-    <div>
-      <div>Notification</div>
-    </div>
+    <>
+      <div
+        className={classNames(
+          "p-4",
+          "mb-4",
+          "text-sm",
+          "rounded-lg",
+          {
+            "bg-gray-200": type === "standard",
+            "text-gray-800": type === "standard",
+          },
+          {
+            "bg-red-200": type === "error",
+            "text-red-800": type === "error",
+          },
+          {
+            "bg-green-200": type === "success",
+            "text-green-800": type === "success",
+          },
+          {
+            "bg-yellow-200": type === "warning",
+            "text-yellow-800": type === "warning",
+          }
+        )}
+      >
+        {message}
+      </div>
+    </>
   );
 }

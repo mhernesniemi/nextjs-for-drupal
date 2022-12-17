@@ -10,7 +10,9 @@ import Button from "components/button/button";
 import Heading from "components/heading/heading";
 import Select from "components/forms/select";
 import Dropdown from "components/dropdown/dropdown";
-import QuickSearch from "components/quick-search/quick-search";
+import Notification from "components/notification/notification";
+import ContentSection from "components/containers/content-section";
+import Accordion from "components/accordion/accordion";
 
 interface IndexPageProps {
   nodes: DrupalNode[];
@@ -27,66 +29,115 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         />
       </Head>
 
-      <QuickSearch />
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Accordion
+        </Heading>
+        <Accordion />
+      </ContentSection>
 
-      <Heading level="h2" size="large">
-        Select
-      </Heading>
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Notification
+        </Heading>
+        <Notification message="Change a few things up and try submitting again." />
+        <Notification
+          type="success"
+          message="Change a few things up and try submitting again."
+        />
+        <Notification
+          type="error"
+          message="Change a few things up and try submitting again."
+        />
+        <Notification
+          type="warning"
+          message="Change a few things up and try submitting again."
+        />
+      </ContentSection>
 
-      <Select label="Label" />
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Select
+        </Heading>
+        <Select label="Label" />
+      </ContentSection>
 
-      <Heading level="h2" size="large">
-        Dropdown
-      </Heading>
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Dropdown
+        </Heading>
+        <Dropdown
+          items={[
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+          ]}
+        />
+      </ContentSection>
 
-      <Dropdown />
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Form button
+        </Heading>
+        <div className="flex gap-2 mb-5">
+          <Button type="primary">Primary</Button>
+          <Button type="secondary">Secondary</Button>
+          <Button type="outlined">Outlined</Button>
+          <Button type="disabled">Disabled</Button>
+        </div>
+      </ContentSection>
 
-      <Heading level="h2" size="large">
-        Form button
-      </Heading>
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Button as link
+        </Heading>
+        <div className="flex gap-2 mb-5">
+          <Button url="#" type="primary">
+            Primary
+          </Button>
+          <Button url="#" type="secondary">
+            Secondary
+          </Button>
+          <Button url="#" type="outlined">
+            Outlined
+          </Button>
+          <Button url="#" type="disabled">
+            Disabled
+          </Button>
+        </div>
+      </ContentSection>
 
-      <div className="flex gap-2 mb-5">
-        <Button type="primary">Primary</Button>
-        <Button type="secondary">Secondary</Button>
-        <Button type="outlined">Outlined</Button>
-        <Button type="disabled">Disabled</Button>
-      </div>
-
-      <Heading level="h2" size="large">
-        Button as link
-      </Heading>
-
-      <div className="flex gap-2 mb-5">
-        <Button url="#" type="primary">
-          Primary
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Button with click event
+        </Heading>
+        <Button
+          type="primary"
+          clickEvent={() => {
+            console.log("click");
+          }}
+        >
+          Click
         </Button>
-        <Button url="#" type="secondary">
-          Secondary
-        </Button>
-        <Button url="#" type="outlined">
-          Outlined
-        </Button>
-        <Button url="#" type="disabled">
-          Disabled
-        </Button>
-      </div>
+      </ContentSection>
 
-      <Heading level="h2" size="large">
-        Heading
-      </Heading>
-
-      <Heading level="h1" size="xl">
-        Heading
-      </Heading>
-      <Heading level="h2" size="large">
-        Heading
-      </Heading>
-      <Heading level="h3" size="medium">
-        Heading
-      </Heading>
-      <Heading level="h4" size="small">
-        Heading
-      </Heading>
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Heading
+        </Heading>
+        <Heading level="h1" size="xl">
+          Heading XL
+        </Heading>
+        <Heading level="h2" size="large">
+          Heading Large
+        </Heading>
+        <Heading level="h3" size="medium">
+          Heading Medium
+        </Heading>
+        <Heading level="h4" size="small">
+          Heading Small
+        </Heading>
+      </ContentSection>
 
       <div>
         <Heading level="h1" size="xl">
