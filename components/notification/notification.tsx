@@ -19,19 +19,19 @@ export default function Notification({
           "rounded-lg",
           {
             "bg-gray-200": type === "standard",
-            "text-gray-800": type === "standard",
+            "text-gray-900": type === "standard",
           },
           {
             "bg-red-200": type === "error",
-            "text-red-800": type === "error",
+            "text-red-900": type === "error",
           },
           {
             "bg-green-200": type === "success",
-            "text-green-800": type === "success",
+            "text-green-900": type === "success",
           },
           {
             "bg-yellow-200": type === "warning",
-            "text-yellow-800": type === "warning",
+            "text-yellow-900": type === "warning",
           }
         )}
       >

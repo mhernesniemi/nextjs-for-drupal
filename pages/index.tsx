@@ -13,6 +13,9 @@ import Dropdown from "components/dropdown/dropdown";
 import Notification from "components/notification/notification";
 import ContentSection from "components/containers/content-section";
 import Accordion from "components/accordion/accordion";
+import Tabs from "components/tabs/tabs";
+import Modal from "components/modal/modal";
+import MobileMenu from "components/mobile-menu/mobile-menu";
 
 interface IndexPageProps {
   nodes: DrupalNode[];
@@ -31,9 +34,77 @@ export default function IndexPage({ nodes }: IndexPageProps) {
 
       <ContentSection>
         <Heading level="h2" size="large">
+          Mobile menu
+        </Heading>
+        <MobileMenu />
+      </ContentSection>
+
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Modal
+        </Heading>
+        <Modal title="Title" buttonText="Close">
+          Your payment has been successfully submitted. We’ve sent you an email
+          with all of the details of your order.
+        </Modal>
+      </ContentSection>
+
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Tabs
+        </Heading>
+        <Tabs
+          items={[
+            {
+              title: "Accordion title number one",
+              body: "With consumer awareness articles and documentaries frequently picking up on this topic, it's likely the case that retailers find it harder to get away with the more obvious ploys. We are becoming ever more savvy consumers and there's probably not a great deal that gets past us. But here's a few retail tricks to keep in mind when you are rushing around the weekly supermarket stock-up.",
+            },
+            {
+              title: "Accordion title number two",
+              body: "2 With consumer awareness articles and documentaries frequently picking up on this topic, it's likely the case that retailers find it harder to get away with the more obvious ploys. We are becoming ever more savvy consumers and there's probably not a great deal that gets past us. But here's a few retail tricks to keep in mind when you are rushing around the weekly supermarket stock-up.",
+            },
+            {
+              title: "Accordion title number three",
+              body: "3 With consumer awareness articles and documentaries frequently picking up on this topic, it's likely the case that retailers find it harder to get away with the more obvious ploys. We are becoming ever more savvy consumers and there's probably not a great deal that gets past us. But here's a few retail tricks to keep in mind when you are rushing around the weekly supermarket stock-up.",
+            },
+          ]}
+        />
+      </ContentSection>
+
+      <ContentSection>
+        <Heading level="h2" size="large">
           Accordion
         </Heading>
-        <Accordion />
+        <Accordion
+          items={[
+            {
+              title: "Accordion title number one",
+              body: "With consumer awareness articles and documentaries frequently picking up on this topic, it's likely the case that retailers find it harder to get away with the more obvious ploys. We are becoming ever more savvy consumers and there's probably not a great deal that gets past us. But here's a few retail tricks to keep in mind when you are rushing around the weekly supermarket stock-up.",
+            },
+            {
+              title: "Accordion title number two",
+              body: "With consumer awareness articles and documentaries frequently picking up on this topic, it's likely the case that retailers find it harder to get away with the more obvious ploys. We are becoming ever more savvy consumers and there's probably not a great deal that gets past us. But here's a few retail tricks to keep in mind when you are rushing around the weekly supermarket stock-up.",
+            },
+            {
+              title: "Accordion title number three",
+              body: "With consumer awareness articles and documentaries frequently picking up on this topic, it's likely the case that retailers find it harder to get away with the more obvious ploys. We are becoming ever more savvy consumers and there's probably not a great deal that gets past us. But here's a few retail tricks to keep in mind when you are rushing around the weekly supermarket stock-up.",
+            },
+          ]}
+        />
+      </ContentSection>
+
+      <ContentSection>
+        <Heading level="h2" size="large">
+          Dropdown menu
+        </Heading>
+        <Dropdown
+          label="Language"
+          items={[
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+          ]}
+        />
       </ContentSection>
 
       <ContentSection>
@@ -43,15 +114,15 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         <Notification message="Change a few things up and try submitting again." />
         <Notification
           type="success"
-          message="Change a few things up and try submitting again."
+          message="Success: Change a few things up and try submitting again."
         />
         <Notification
           type="error"
-          message="Change a few things up and try submitting again."
+          message="Error: Change a few things up and try submitting again."
         />
         <Notification
           type="warning"
-          message="Change a few things up and try submitting again."
+          message="Warning: Change a few things up and try submitting again."
         />
       </ContentSection>
 
@@ -64,22 +135,9 @@ export default function IndexPage({ nodes }: IndexPageProps) {
 
       <ContentSection>
         <Heading level="h2" size="large">
-          Dropdown
-        </Heading>
-        <Dropdown
-          items={[
-            { title: "Finnish", url: "#" },
-            { title: "English", url: "#" },
-            { title: "Swedish", url: "#" },
-          ]}
-        />
-      </ContentSection>
-
-      <ContentSection>
-        <Heading level="h2" size="large">
           Form button
         </Heading>
-        <div className="flex gap-2 mb-5">
+        <div className="flex flex-wrap gap-2 mb-5">
           <Button type="primary">Primary</Button>
           <Button type="secondary">Secondary</Button>
           <Button type="outlined">Outlined</Button>
@@ -91,7 +149,7 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         <Heading level="h2" size="large">
           Button as link
         </Heading>
-        <div className="flex gap-2 mb-5">
+        <div className="flex flex-wrap gap-2 mb-5">
           <Button url="#" type="primary">
             Primary
           </Button>
