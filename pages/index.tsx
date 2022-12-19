@@ -36,7 +36,51 @@ export default function IndexPage({ nodes }: IndexPageProps) {
         <Heading level="h2" size="large">
           Mobile menu
         </Heading>
-        <MobileMenu />
+        <MobileMenu
+          items={[
+            { title: "Finnish", url: "#" },
+            {
+              title:
+                "English English English English English English English English",
+              url: "#",
+            },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            {
+              title:
+                "SwedishSwedishSwedishSwedishSwedishSwedishSwedish Swedish Swedish",
+              url: "#",
+            },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+            { title: "Finnish", url: "#" },
+            { title: "English", url: "#" },
+            { title: "Swedish", url: "#" },
+          ]}
+        />
       </ContentSection>
 
       <ContentSection>

@@ -20,7 +20,7 @@ export default function Button({
     "inline-flex",
     "items-center",
     "px-5",
-    "py-2",
+    "py-2.5",
     "rounded-lg",
     "focus:ring-4",
     "focus:outline-none",

@@ -27,7 +27,7 @@ export function NodeArticle({ node, ...props }: NodeArticleProps) {
             src={absoluteUrl(node.field_media_image.field_media_image.uri.url)}
             width={400}
             height={200}
-            alt={node.field_media_image.resourceIdObjMeta.alt}
+            alt="Decorative image"
             priority
           />
           {node.field_media_image.resourceIdObjMeta.title && (

@@ -34,7 +34,7 @@ export function NodeArticleTeaser({ node, ...props }: NodeArticleTeaserProps) {
             src={absoluteUrl(node.field_media_image.field_media_image.uri.url)}
             width={768}
             height={480}
-            alt={node.field_media_image.resourceIdObjMeta.alt}
+            alt="Decorative image"
           />
         </figure>
       )}

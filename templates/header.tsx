@@ -39,7 +39,13 @@ export default function Header({}: HeaderProps) {
             <DarkModeSwitcher />
           </div>
           <div className="inline-block lg:hidden">
-            <MobileMenu />
+            <MobileMenu
+              items={[
+                { title: "Finnish", url: "#" },
+                { title: "English", url: "#" },
+                { title: "Swedish", url: "#" },
+              ]}
+            />
           </div>
         </div>
       </div>

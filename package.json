@@ -1,8 +1,12 @@
 {
-  "name": "exove-starter",
+  "name": "next-drupal-starter",
   "version": "1",
   "private": true,
   "license": "MIT",
+  "author": "<matti.hernesniemi@exove.com>",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,3 +1,5 @@
+import classNames from "classnames";
+
 interface HeadingProps {
   level: "h1" | "h2" | "h3" | "h4";
   size: "xl" | "large" | "medium" | "small";
@@ -9,24 +11,32 @@ export default function Heading({ level, size, children }: HeadingProps) {
 
   return (
     <>
-      {size === "xl" && (
-        <Tag className="mb-10 text-6xl font-black text-black dark:text-white">
-          {children}
-        </Tag>
-      )}
-      {size === "large" && (
-        <Tag className="mb-6 text-4xl font-bold text-black dark:text-white">
-          {children}
-        </Tag>
-      )}
-      {size === "medium" && (
-        <Tag className="mb-3 text-2xl font-bold text-black dark:text-white">
-          {children}
-        </Tag>
-      )}
-      {size === "small" && (
-        <Tag className="font-bold text-black dark:text-white">{children}</Tag>
-      )}
+      <Tag
+        className={classNames(
+          "text-black",
+          "dark:text-white",
+          {
+            "text-6xl": size === "xl",
+            "font-black": size === "xl",
+            "mb-10": size === "xl",
+          },
+          {
+            "text-4xl": size === "large",
+            "font-bold": size === "large",
+            "mb-6": size === "large",
+          },
+          {
+            "text-2xl": size === "medium",
+            "font-bold": size === "medium",
+            "mb-3": size === "medium",
+          },
+          {
+            "font-bold": size === "small",
+          }
+        )}
+      >
+        {children}
+      </Tag>
     </>
   );
 }

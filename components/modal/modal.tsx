@@ -6,15 +6,9 @@ interface ModalProps {
   title?: string;
   children: any;
   buttonText?: string;
-  closeIcon?: boolean;
 }
 
-export default function Modal({
-  title,
-  children,
-  buttonText,
-  closeIcon,
-}: ModalProps) {
+export default function Modal({ title, children, buttonText }: ModalProps) {
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
