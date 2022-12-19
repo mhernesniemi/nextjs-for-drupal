@@ -1,8 +1,9 @@
-import { CgMenu } from "react-icons/cg";
-import { CgClose } from "react-icons/cg";
+import { CgMenu, CgClose, CgChevronRight, CgChevronLeft } from "react-icons/cg";
+
 import { Transition } from "@headlessui/react";
 import { Fragment, useEffect, useId, useState } from "react";
 import Link from "next/link";
+import Heading from "components/heading/heading";
 
 interface MobileMenuProps {
   items: any;
@@ -10,12 +11,14 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ items }: MobileMenuProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [subMenuOpen, setSubMenuOpen] = useState(false);
   const id = useId();
 
   useEffect(() => {
     menuOpen
       ? document.body.classList.add("fixed", "w-full")
       : document.body.classList.remove("fixed", "w-full");
+    setSubMenuOpen(false);
   }, [menuOpen]);
 
   return (
@@ -28,6 +31,7 @@ export default function MobileMenu({ items }: MobileMenuProps) {
           }}
           aria-expanded={menuOpen ? "true" : "false"}
           aria-controls={id}
+          id={id + "button"}
         >
           {menuOpen ? (
             <>
@@ -45,13 +49,13 @@ export default function MobileMenu({ items }: MobileMenuProps) {
 
       <Transition
         as={Fragment}
+        show={menuOpen}
         enter="transition ease-out duration-500"
         enterFrom="opacity-0 translate-y-1"
         enterTo="opacity-100 translate-y-0"
         leave="transition ease-in duration-150"
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
-        show={menuOpen}
       >
         <div
           id={id}
@@ -59,8 +63,71 @@ export default function MobileMenu({ items }: MobileMenuProps) {
         >
           <div className="w-full h-screen px-4 pt-20 overflow-scroll break-words">
             {items.map((item, index: number) => (
-              <div key={index} className="py-2 text-lg border-b">
-                <Link href={item.url}>{item.title}</Link>
+              <div key={index}>
+                {!item.sublink && (
+                  <Link
+                    href={item.url}
+                    className="block py-3 text-lg border-t border-gray-700"
+                  >
+                    {item.title}
+                  </Link>
+                )}
+
+                {item.sublinks && (
+                  <div>
+                    <button
+                      className="flex items-center justify-between w-full py-2 text-lg border-t border-gray-700"
+                      onClick={() => setSubMenuOpen(true)}
+                    >
+                      {item.title}
+                      <CgChevronRight className="mx-3 text-yellow-500 w-9 h-9" />
+                    </button>
+                    <Transition
+                      as={Fragment}
+                      show={subMenuOpen}
+                      enter="transition-all duration-[400ms]"
+                      enterFrom="ml-[700px]"
+                      enterTo="ml-0"
+                      leave="transition-all duration-[400ms]"
+                      leaveFrom="ml-0"
+                      leaveTo="ml-[700px]"
+                    >
+                      <div className="fixed top-0 left-0 z-10 w-screen h-screen bg-white dark:bg-gray-900 dark:text-white">
+                        <button
+                          className="p-3 mt-2"
+                          onClick={() => setSubMenuOpen(false)}
+                        >
+                          <div className="flex items-center gap-4">
+                            <CgChevronLeft className="w-10 h-10" />
+                            Main navigation
+                          </div>
+                        </button>
+                        <div className="px-4 py-10">
+                          <Heading level="h2" size="medium">
+                            {item.title}
+                          </Heading>
+                        </div>
+                        <div className="w-full h-screen px-4 overflow-scroll break-words">
+                          {item.sublinks.map((sublink, index) => (
+                            <div key={index}>
+                              <Link
+                                href={sublink.url}
+                                className="block py-3 text-lg border-t border-gray-700"
+                              >
+                                {sublink.title}
+                              </Link>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </Transition>
+                  </div>
+                )}
+
+                {/* Last item */}
+                {items[index + 1] ? null : (
+                  <div className="mb-10 border-b border-gray-700"></div>
+                )}
               </div>
             ))}
           </div>

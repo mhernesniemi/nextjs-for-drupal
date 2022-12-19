@@ -54,7 +54,16 @@ export default function IndexPage({ nodes }: IndexPageProps) {
             },
             { title: "Finnish", url: "#" },
             { title: "English", url: "#" },
-            { title: "Swedish", url: "#" },
+            {
+              title: "Swedish",
+              url: "#",
+              sublinks: [
+                { title: "Sublink numero yks", url: "#" },
+                { title: "Sublink numero kaks", url: "#" },
+                { title: "Sublink numero kol", url: "#" },
+                { title: "Sublink numero nel", url: "#" },
+              ],
+            },
             { title: "Finnish", url: "#" },
             { title: "English", url: "#" },
             { title: "Swedish", url: "#" },
