@@ -21,7 +21,7 @@ export default function Modal({ title, children, buttonText }: ModalProps) {
   return (
     <>
       <div>
-        <Button type="primary" clickEvent={openModal}>
+        <Button type="primary" onClick={openModal}>
           Open dialog
         </Button>
       </div>
@@ -61,7 +61,7 @@ export default function Modal({ title, children, buttonText }: ModalProps) {
                   <div className="mt-2">{children}</div>
 
                   <div className="mt-4">
-                    <Button type="primary" clickEvent={closeModal}>
+                    <Button type="primary" onClick={closeModal}>
                       {buttonText}
                     </Button>
                   </div>
