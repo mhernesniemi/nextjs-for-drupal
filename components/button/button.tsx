@@ -5,15 +5,10 @@ interface ButtonProps {
   type: "primary" | "secondary" | "outlined" | "disabled";
   children: any;
   url?: string;
-  clickEvent?: Function;
+  onClick?: any;
 }
 
-export default function Button({
-  type,
-  children,
-  url,
-  clickEvent,
-}: ButtonProps) {
+export default function Button({ type, children, url, onClick }: ButtonProps) {
   const Tag = url ? Link : "button";
 
   const classList = classNames(
@@ -55,11 +50,7 @@ export default function Button({
   return (
     <>
       {type !== "disabled" ? (
-        <Tag
-          href={url}
-          className={classList}
-          onClick={clickEvent ? () => clickEvent() : null}
-        >
+        <Tag href={url} className={classList} onClick={onClick}>
           {children}
         </Tag>
       ) : (

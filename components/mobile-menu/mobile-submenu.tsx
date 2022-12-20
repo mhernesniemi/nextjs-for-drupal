@@ -1,4 +1,4 @@
-import { CgMenu, CgClose, CgChevronRight, CgChevronLeft } from "react-icons/cg";
+import { CgChevronRight, CgChevronLeft } from "react-icons/cg";
 
 import { Transition } from "@headlessui/react";
 import { Fragment, useEffect, useId, useState } from "react";

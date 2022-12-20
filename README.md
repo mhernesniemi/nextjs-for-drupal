@@ -1,6 +1,6 @@
 # Basic Starter
 
-A simple starter for building your site with Next.js and Drupal.
+Starter kit for building your site with Next.js and Drupal. Built with Typescript, Headless UI, Tailwind CSS and InstantSearch.
 
 ## How to use
 
@@ -10,15 +10,15 @@ A simple starter for building your site with Next.js and Drupal.
 
 ## Hosting
 
-Backend is served externally from Pantheon (see .env).
+Backend is served externally from Pantheon (see .env.example).
 
-Next.js site is running in Vercel https://nextjs-for-drupal.vercel.app/ and Netlify https://superb-syrniki-5494f8.netlify.app/ These have CI with the GitHub repo.
+Next.js site is running on Vercel https://nextjs-for-drupal.vercel.app/ and Netlify https://superb-syrniki-5494f8.netlify.app/ These have CI with the GitHub repo.
 
 Search is running as SaaS by Algolia.
 
 ## Development tools
 
-Projects includes workspace file for VSCode (nextjs.code-workspace).
+Project includes workspace file for VSCode (nextjs.code-workspace).
 
 Recommended VSCode extensions:
 

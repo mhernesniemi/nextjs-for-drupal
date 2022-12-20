@@ -1,10 +1,19 @@
 import { useId } from "react";
 
 interface SelectProps {
-  label?: string;
+  label: string;
+  value: string;
+  onChange: any;
+  options: any;
+  activeValue?: any;
 }
 
-export default function Select({ label }: SelectProps) {
+export default function Select({
+  label,
+  onChange,
+  activeValue,
+  options,
+}: SelectProps) {
   const id = useId();
 
   return (
@@ -17,13 +26,15 @@ export default function Select({ label }: SelectProps) {
       </label>
       <select
         id={id}
+        onChange={onChange}
+        defaultValue={activeValue}
         className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       >
-        <option value="title">Choose a country</option>
-        <option value="US">United States</option>
-        <option value="CA">Canada</option>
-        <option value="FR">France</option>
-        <option value="DE">Germany</option>
+        {options.map((option, index) => (
+          <option value={option.value} key={index}>
+            {option.name}
+          </option>
+        ))}
       </select>
     </div>
   );
