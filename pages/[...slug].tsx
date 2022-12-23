@@ -92,11 +92,6 @@ export async function getStaticProps(
     };
   }
 
-  const main = await drupal.getMenu("main", {
-    locale: resource.path.langcode,
-    defaultLocale: "en",
-  });
-
   return {
     props: {
       resource,
