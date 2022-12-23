@@ -36,6 +36,7 @@ export default function Dropdown({ label, items, background }: DropdownProps) {
                   {({ active }) => (
                     <Link
                       href={item.url}
+                      locale={item.locale}
                       className={`${
                         active ? "bg-gray-500 text-white" : "text-gray-900"
                       } flex w-full items-center rounded-md px-2 py-2 text-sm`}

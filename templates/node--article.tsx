@@ -12,7 +12,7 @@ export function NodeArticle({ node, ...props }: NodeArticleProps) {
   return (
     <article {...props}>
       <h1 className="mb-4 text-6xl font-black leading-tight">{node.title}</h1>
-      <div className="mb-4 text-gray-600">
+      <div className="mb-4">
         {node.uid?.display_name ? (
           <span>
             Posted by{" "}
@@ -31,7 +31,7 @@ export function NodeArticle({ node, ...props }: NodeArticleProps) {
             priority
           />
           {node.field_media_image.resourceIdObjMeta.title && (
-            <figcaption className="py-2 text-sm text-center text-gray-600">
+            <figcaption className="py-2 text-sm text-center text-gray">
               {node.field_media_image.resourceIdObjMeta.title}
             </figcaption>
           )}
@@ -40,7 +40,7 @@ export function NodeArticle({ node, ...props }: NodeArticleProps) {
       {node.body?.processed && (
         <div
           dangerouslySetInnerHTML={{ __html: node.body?.processed }}
-          className="mt-6 font-serif text-xl leading-loose prose"
+          className="mt-6 font-serif text-xl leading-relaxed prose dark:prose-invert"
         />
       )}
       {node.field_paragraphs.map((paragraph, index) => {

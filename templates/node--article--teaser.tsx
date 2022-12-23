@@ -13,8 +13,7 @@ export function NodeArticleTeaser({ node, ...props }: NodeArticleTeaserProps) {
   return (
     <article {...props}>
       <Link
-        href={node.path.alias}
-        passHref
+        href={node.path.alias ? node.path.alias : ""}
         className="text-blue-600 no-underline hover:underline"
       >
         <h2 className="mb-4 text-4xl font-bold">{node.title}</h2>

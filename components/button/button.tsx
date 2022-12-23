@@ -41,9 +41,11 @@ export default function Button({ type, children, url, onClick }: ButtonProps) {
       "dark:text-white": type === "outlined",
     },
     {
+      "text-gray-500": type == "disabled",
       "cursor-not-allowed": type == "disabled",
       "bg-gray-200": type == "disabled",
-      "dark:bg-gray-400": type === "disabled",
+      "dark:bg-gray-800": type === "disabled",
+      "dark:text-gray-400": type == "disabled",
     }
   );
 

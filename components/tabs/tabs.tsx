@@ -34,10 +34,7 @@ export default function Tabs({ items }: TabsProps) {
           {items.map((item, index) => (
             <Tab.Panel
               key={index}
-              className={classNames(
-                "rounded-lg bg-white p-7",
-                "ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
-              )}
+              className="bg-gray-200 rounded-lg dark:bg-gray-800 p-7 ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
             >
               <ul>{item.body}</ul>
             </Tab.Panel>
