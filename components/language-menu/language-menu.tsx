@@ -1,9 +1,6 @@
-import classNames from "classnames";
-import Dropdown from "components/dropdown/dropdown";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-export function LanguagePicker() {
+export function useLanguageMenu() {
   const { locales, asPath } = useRouter();
 
   const languages = [];
@@ -17,9 +14,7 @@ export function LanguagePicker() {
     })
   );
 
-  return (
-    <div>
-      <Dropdown label="Language" items={languages} />
-    </div>
-  );
+  const mobileLanguages = { title: "Language", sublinks: languages };
+
+  return [languages, mobileLanguages];
 }

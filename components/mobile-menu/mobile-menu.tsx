@@ -57,14 +57,14 @@ export default function MobileMenu({ items }: MobileMenuProps) {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <div
+        <nav
           id={id}
           className="fixed top-0 left-0 z-10 w-screen h-screen bg-white dark:bg-gray-900 dark:text-white"
         >
-          <div className="w-full h-screen px-4 pt-20 overflow-scroll break-words">
+          <ul className="w-full h-screen px-4 pt-20 overflow-scroll break-words">
             {items.map((item, index: number) => (
-              <div key={index}>
-                {!item.sublink && (
+              <li key={index}>
+                {!item.sublinks && (
                   <Link
                     href={item.url}
                     className="block py-3 text-lg border-t border-gray-700"
@@ -79,12 +79,12 @@ export default function MobileMenu({ items }: MobileMenuProps) {
 
                 {/* Last item */}
                 {items[index + 1] ? null : (
-                  <div className="mb-10 border-b border-gray-700"></div>
+                  <div className="mb-10 border-b border-gray-700" />
                 )}
-              </div>
+              </li>
             ))}
-          </div>
-        </div>
+          </ul>
+        </nav>
       </Transition>
     </div>
   );

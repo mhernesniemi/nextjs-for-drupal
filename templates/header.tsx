@@ -1,18 +1,21 @@
 import Link from "next/link";
 import QuickSearch from "components/quick-search/quick-search";
-import DarkModeSwitcher from "components/dark-mode-switcher/dark-mode-switcher";
-import QuickSearchButton from "components/quick-search/quick-search-button";
 import Dropdown from "components/dropdown/dropdown";
 import MobileMenu from "components/mobile-menu/mobile-menu";
-import { LanguagePicker } from "components/language-picker/language-picker";
+import { useLanguageMenu } from "components/language-menu/language-menu";
+import DarkModeSwitcher from "components/dark-mode-switcher/dark-mode-switcher";
+import QuickSearchModal from "components/quick-search/quick-search-modal";
 
 interface HeaderProps {
   menu?: any;
 }
 
 export default function Header({ menu }: HeaderProps) {
-  const mainMenu = [];
-  menu?.map((item) => mainMenu.push({ title: item.title, url: item.url }));
+  const mobileMenu = [];
+  const [languageMenu, mobileLanguageMenu] = useLanguageMenu();
+
+  menu?.map((item) => mobileMenu.push({ title: item.title, url: item.url }));
+  mobileMenu.push(mobileLanguageMenu);
 
   return (
     <header>
@@ -32,16 +35,24 @@ export default function Header({ menu }: HeaderProps) {
             ))}
           </div>
         </div>
+
         <div className="flex items-center gap-8">
-          <QuickSearchButton />
+          <QuickSearchModal>
+            <QuickSearch />
+          </QuickSearchModal>
           <div className="hidden lg:inline-block">
-            <LanguagePicker />
+            <Dropdown
+              label="Language"
+              items={languageMenu}
+              background={false}
+              directionLeft={true}
+            />
           </div>
-          <div className="hidden lg:inline-block">
+          <div className="items-center hidden lg:flex">
             <DarkModeSwitcher />
           </div>
           <div className="inline-block lg:hidden">
-            <MobileMenu items={mainMenu} />
+            <MobileMenu items={mobileMenu} />
           </div>
         </div>
       </div>

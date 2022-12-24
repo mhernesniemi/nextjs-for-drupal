@@ -27,21 +27,23 @@ export default function QuickSearch({}: QuickSearchProps) {
     >
       <SearchBox
         submitIconComponent={() => (
-          <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-            <GoSearch className="w-6 h-6 text-black" />
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <GoSearch className="w-6 h-6 text-white" />
           </div>
         )}
+        autoFocus={true}
         resetIconComponent={() => null}
         classNames={{
           root: "relative",
           form: "flex mb-3",
           input:
-            "py-3 px-12 m-1 w-full border-2 border-gray-400 placeholder:text-black rounded",
+            "py-3 px-12 w-full border border-gray-400 bg-gray-700 placeholder:text-white rounded",
         }}
         placeholder={"Quick search"}
       />
-      {query && (
-        <div className="p-2 border">
+
+      <div className="h-[500px] overflow-scroll">
+        {query && (
           <Hits
             hitComponent={(data: { hit: any }) => (
               <div>
@@ -51,8 +53,8 @@ export default function QuickSearch({}: QuickSearchProps) {
               </div>
             )}
           />
-        </div>
-      )}
+        )}
+      </div>
     </InstantSearch>
   );
 }
