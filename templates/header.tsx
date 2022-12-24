@@ -37,9 +37,7 @@ export default function Header({ menu }: HeaderProps) {
         </div>
 
         <div className="flex items-center gap-8">
-          <QuickSearchModal>
-            <QuickSearch />
-          </QuickSearchModal>
+          <QuickSearchModal />
           <div className="hidden lg:inline-block">
             <Dropdown
               label="Language"

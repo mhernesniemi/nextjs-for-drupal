@@ -2,12 +2,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import Button from "components/button/button";
 import { Fragment, useState } from "react";
 import { BiSearch } from "react-icons/bi";
+import QuickSearch from "./quick-search";
 
-interface QuickSearchModalProps {
-  children?: any;
-}
-
-export default function QuickSearchModal({ children }: QuickSearchModalProps) {
+export default function QuickSearchModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -39,7 +36,7 @@ export default function QuickSearchModal({ children }: QuickSearchModalProps) {
             <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div className="fixed inset-0">
             <div className="flex items-center justify-center min-h-full md:p-4">
               <Transition.Child
                 as={Fragment}
@@ -50,16 +47,12 @@ export default function QuickSearchModal({ children }: QuickSearchModalProps) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative w-full max-w-xl p-6 bg-white md:rounded-2xl dark:bg-gray-800 ">
+                <Dialog.Panel className="relative w-full h-screen max-w-xl overflow-scroll bg-white md:rounded-2xl dark:bg-gray-800 lg:h-auto">
                   <Dialog.Title as="h3" className="sr-only">
                     Haku
                   </Dialog.Title>
-                  <div className="mt-2">{children}</div>
-
-                  <div className="mt-4">
-                    <Button type="primary" onClick={() => setIsOpen(false)}>
-                      Close
-                    </Button>
+                  <div>
+                    <QuickSearch setIsOpen={setIsOpen} />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
