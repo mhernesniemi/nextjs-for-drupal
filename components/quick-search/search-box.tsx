@@ -8,9 +8,9 @@ import {
 import { useSearchBox, UseSearchBoxProps } from "react-instantsearch-hooks";
 import { ControlledSearchBox } from "./conrolled-search-box";
 
-export type SearchBoxProps = ComponentProps<"div"> & UseSearchBoxProps;
+// export type SearchBoxProps = ComponentProps<"div"> & UseSearchBoxProps;
 
-export function SearchBox(props: SearchBoxProps) {
+export function SearchBox(props) {
   const { query, refine, isSearchStalled } = useSearchBox(props);
   const [value, setValue] = useState(query);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -34,14 +34,15 @@ export function SearchBox(props: SearchBoxProps) {
   }, [value, refine]);
 
   return (
-    <ControlledSearchBox
-      className={props.className}
-      inputRef={inputRef}
-      isSearchStalled={isSearchStalled}
-      onChange={onChange}
-      onReset={onReset}
-      placeholder={props.placeholder}
-      value={value}
-    />
+    <>
+      <ControlledSearchBox
+        inputRef={props.inputRef}
+        isSearchStalled={isSearchStalled}
+        onChange={onChange}
+        onReset={onReset}
+        placeholder={props.placeholder}
+        value={value}
+      />
+    </>
   );
 }

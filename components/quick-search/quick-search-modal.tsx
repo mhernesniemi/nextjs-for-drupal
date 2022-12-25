@@ -1,17 +1,21 @@
 import { Dialog, Transition } from "@headlessui/react";
 import Button from "components/button/button";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import QuickSearch from "./quick-search";
 
 export default function QuickSearchModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const inputRef = useRef(null);
 
   return (
     <>
       <div>
         <button
-          onClick={() => setIsOpen(true)}
+          onClick={() => {
+            setTimeout(() => inputRef.current.focus(), 500);
+            setIsOpen(true);
+          }}
           className="inline-flex items-center py-3 pl-4 pr-12 text-white bg-gray-700 border border-gray-400 rounded-lg hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none dark:focus:ring-gray-800"
         >
           <BiSearch className="w-5 h-5 mr-3 text-white" /> Quick search
@@ -52,7 +56,7 @@ export default function QuickSearchModal() {
                     Haku
                   </Dialog.Title>
                   <div>
-                    <QuickSearch setIsOpen={setIsOpen} />
+                    <QuickSearch setIsOpen={setIsOpen} inputRef={inputRef} />
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
