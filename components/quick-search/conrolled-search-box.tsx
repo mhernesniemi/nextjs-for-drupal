@@ -54,7 +54,6 @@ export function ControlledSearchBox({
   }
 
   const callbackRef = useCallback((inputElement: HTMLInputElement): void => {
-    callbackRef.current = inputElement;
     focusAndOpenKeyboard(inputElement);
   }, []);
 
