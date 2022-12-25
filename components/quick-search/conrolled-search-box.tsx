@@ -7,7 +7,6 @@ import {
   ComponentProps,
   Fragment,
   useRef,
-  useCallback,
 } from "react";
 
 export type ControlledSearchBoxProps = ComponentProps<"div"> & {
@@ -30,42 +29,20 @@ export function ControlledSearchBox({
   value,
   ...props
 }: ControlledSearchBoxProps) {
-  function focusAndOpenKeyboard(el) {
-    if (el) {
-      // Align temp input element approx. to be where the input element is
-      var __tempEl__ = document.createElement("input");
-      __tempEl__.style.position = "absolute";
-      __tempEl__.style.top = el.offsetTop + 7 + "px";
-      __tempEl__.style.left = el.offsetLeft + "px";
-      __tempEl__.style.height = "0";
-      __tempEl__.style.opacity = "0";
-      // Put this temp element as a child of the page <body> and focus on it
-      document.body.appendChild(__tempEl__);
-      __tempEl__.focus();
-
-      // The keyboard is open. Now do a delayed focus on the target element
-      setTimeout(function () {
-        el.focus();
-        el.click();
-        // Remove the temp element
-        document.body.removeChild(__tempEl__);
-      }, 100);
-    }
-  }
-
-  const callbackRef = useCallback((inputElement: HTMLInputElement): void => {
-    focusAndOpenKeyboard(inputElement);
-  }, []);
+  // Focus input after modal is open.
+  const searchRef = useRef(null);
+  setTimeout(() => searchRef.current.focus(), 0);
 
   return (
     <Fragment {...props}>
       <form action="" className="w-full" noValidate>
         <input
-          ref={callbackRef}
+          ref={searchRef}
           className="w-full px-12 py-3 bg-gray-700 border border-gray-400 rounded placeholder:text-white"
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
+          enterKeyHint="go"
           placeholder={placeholder}
           spellCheck={false}
           maxLength={512}
