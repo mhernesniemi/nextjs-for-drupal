@@ -8,6 +8,7 @@ import {
   Fragment,
   useRef,
   useEffect,
+  useCallback,
 } from "react";
 
 export type ControlledSearchBoxProps = ComponentProps<"div"> & {
@@ -31,25 +32,25 @@ export function ControlledSearchBox({
   ...props
 }: ControlledSearchBoxProps) {
   // Focus input after modal is open.
-  const searchRef = useRef(null);
+  // const searchRef = useRef(null);
 
-  useEffect(() => {
-    if (searchRef.current) {
-      setTimeout(() => searchRef.current.focus(), 1000);
-    }
-  }, []);
-
-  // const callbackRef = useCallback((inputElement) => {
-  //   if (inputElement) {
-  //     inputElement.focus();
+  // useEffect(() => {
+  //   if (searchRef.current) {
+  //     setTimeout(() => searchRef.current.focus(), 1000);
   //   }
   // }, []);
 
+  const callbackRef = useCallback((inputElement) => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
+
   return (
     <Fragment {...props}>
+      <input ref={callbackRef} />
       <form action="" className="w-full" noValidate>
         <input
-          ref={searchRef}
           className="w-full px-12 py-3 bg-gray-700 border border-gray-400 rounded placeholder:text-white"
           autoComplete="off"
           autoCorrect="off"
