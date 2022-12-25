@@ -7,6 +7,7 @@ import {
   ComponentProps,
   Fragment,
   useRef,
+  useEffect,
 } from "react";
 
 export type ControlledSearchBoxProps = ComponentProps<"div"> & {
@@ -31,7 +32,18 @@ export function ControlledSearchBox({
 }: ControlledSearchBoxProps) {
   // Focus input after modal is open.
   const searchRef = useRef(null);
-  setTimeout(() => searchRef.current.focus(), 0);
+
+  useEffect(() => {
+    if (searchRef.current) {
+      setTimeout(() => searchRef.current.focus(), 1000);
+    }
+  }, []);
+
+  // const callbackRef = useCallback((inputElement) => {
+  //   if (inputElement) {
+  //     inputElement.focus();
+  //   }
+  // }, []);
 
   return (
     <Fragment {...props}>
