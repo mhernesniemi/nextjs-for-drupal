@@ -1,4 +1,5 @@
-import { Dialog, Transition } from "@headlessui/react";
+import { Dialog } from "@headlessui/react";
+import classNames from "classnames";
 import Button from "components/button/button";
 import { Fragment, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
@@ -12,9 +13,9 @@ export default function QuickSearchModal() {
     <>
       <div>
         <button
-          onClick={() => {
-            setTimeout(() => inputRef.current.focus(), 500);
-            setIsOpen(true);
+          onClick={async function () {
+            await setIsOpen(true);
+            inputRef.current?.focus();
           }}
           className="inline-flex items-center py-3 pl-4 pr-12 text-white bg-gray-700 border border-gray-400 rounded-lg hover:bg-gray-800 focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 focus:outline-none dark:focus:ring-gray-800"
         >
@@ -22,48 +23,29 @@ export default function QuickSearchModal() {
         </button>
       </div>
 
-      <Transition appear show={isOpen} as={Fragment}>
+      <div className={classNames({ hidden: !isOpen })}>
         <Dialog
+          open={true}
           as="div"
-          className="relative z-10"
+          className={classNames("relative", "z-10", { hidden: !isOpen })}
           onClose={() => setIsOpen(false)}
         >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-200"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-100"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm" />
-          </Transition.Child>
+          <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm" />
 
           <div className="fixed inset-0">
             <div className="flex items-center justify-center min-h-full md:p-4">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="relative w-full h-screen max-w-xl overflow-scroll bg-white md:rounded-2xl dark:bg-gray-800 lg:h-auto">
-                  <Dialog.Title as="h3" className="sr-only">
-                    Haku
-                  </Dialog.Title>
-                  <div>
-                    <QuickSearch setIsOpen={setIsOpen} inputRef={inputRef} />
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
+              <Dialog.Panel className="relative w-full h-screen max-w-xl overflow-scroll bg-white md:rounded-2xl dark:bg-gray-800 lg:h-auto">
+                <Dialog.Title as="h3" className="sr-only">
+                  Haku
+                </Dialog.Title>
+                <div>
+                  <QuickSearch setIsOpen={setIsOpen} inputRef={inputRef} />
+                </div>
+              </Dialog.Panel>
             </div>
           </div>
         </Dialog>
-      </Transition>
+      </div>
     </>
   );
 }
