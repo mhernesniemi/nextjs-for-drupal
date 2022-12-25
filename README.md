@@ -1,6 +1,6 @@
 # Basic Starter
 
-Starter kit for building your site with Next.js and Drupal. Built with Typescript, Headless UI, Tailwind CSS and InstantSearch.
+Starter kit for building your site with Next.js and Drupal. UI is built with Typescript, Headless UI, Tailwind CSS and InstantSearch.
 
 ## How to use
 
