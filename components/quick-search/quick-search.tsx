@@ -5,11 +5,11 @@ import algoliasearch from "algoliasearch/lite";
 import { SearchBox } from "./search-box";
 
 interface QuickSearchProps {
-  setIsOpen?: any;
+  setOpen?: any;
   inputRef?: RefObject<HTMLInputElement>;
 }
 
-export default function QuickSearch({ setIsOpen, inputRef }: QuickSearchProps) {
+export default function QuickSearch({ setOpen, inputRef }: QuickSearchProps) {
   const searchClient = algoliasearch(
     process.env.ALGOLIA_APPLICATION_ID,
     process.env.ALGOLIA_API_KEY
@@ -27,7 +27,7 @@ export default function QuickSearch({ setIsOpen, inputRef }: QuickSearchProps) {
         <div className="flex items-center gap-6">
           <SearchBox placeholder="Quick Search" inputRef={inputRef} />
           <div>
-            <button onClick={() => setIsOpen(false)}>Cancel</button>
+            <button onClick={() => setOpen(false)}>Cancel</button>
           </div>
         </div>
       </div>
