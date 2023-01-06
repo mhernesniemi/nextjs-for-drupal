@@ -1,5 +1,4 @@
 import Link from "next/link";
-import QuickSearch from "components/quick-search/quick-search";
 import Dropdown from "components/dropdown/dropdown";
 import MobileMenu from "components/mobile-menu/mobile-menu";
 import { useLanguageMenu } from "components/language-menu/language-menu";
@@ -24,7 +23,7 @@ export default function Header({ menu }: HeaderProps) {
           <Link href="/" passHref className="flex items-center gap-4">
             <span className="text-5xl">🪐</span>
             <span className="hidden text-2xl font-semibold lg:inline-block">
-              Next.js for Drupal
+              Next Drupal
             </span>
           </Link>
           <div className="hidden gap-6 text-lg lg:flex">

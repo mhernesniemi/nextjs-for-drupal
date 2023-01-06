@@ -16,13 +16,7 @@ export default function QuickSearch({ setOpen, inputRef }: QuickSearchProps) {
   );
 
   return (
-    <InstantSearch
-      indexName="dev_drupal"
-      searchClient={searchClient}
-      searchFunction={function (search) {
-        if (search.getQuery().query.length > 0) return search.search();
-      }}
-    >
+    <InstantSearch indexName="dev_drupal" searchClient={searchClient}>
       <div className="sticky top-0 p-6 bg-gray-800">
         <div className="flex items-center gap-6">
           <SearchBox placeholder="Quick Search" inputRef={inputRef} />
@@ -32,7 +26,7 @@ export default function QuickSearch({ setOpen, inputRef }: QuickSearchProps) {
         </div>
       </div>
 
-      <div className="lg:h-[500px] px-6 mb-10">
+      <div className="sm:h-[500px] px-6 mb-10">
         <Hits
           hitComponent={(data: { hit: any }) => (
             <div className="py-2 my-1">

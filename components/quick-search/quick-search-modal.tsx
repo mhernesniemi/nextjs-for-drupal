@@ -1,3 +1,4 @@
+import OutsideClickHandler from "react-outside-click-handler";
 import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { BiSearch } from "react-icons/bi";
@@ -7,7 +8,7 @@ export default function QuickSearchModal() {
   const [open, setOpen] = useState(false);
   const inputRef = useRef(null);
 
-  // Let's not use Headless UI's Dialog, cause of the focusing issues.
+  // Let's not use Headless UI's Dialog here 'cause of the focusing issues on iOS.
 
   useEffect(() => {
     const handleEsc = (event) => {
@@ -45,9 +46,15 @@ export default function QuickSearchModal() {
 
         <div className="fixed inset-0">
           <div className="flex items-center justify-center min-h-full md:p-4">
-            <div className="bg-gray-800 w-[600px] overflow-scroll sm:rounded-xl">
-              <QuickSearch setOpen={setOpen} inputRef={inputRef} />
-            </div>
+            <OutsideClickHandler
+              onOutsideClick={() => {
+                setOpen(false);
+              }}
+            >
+              <div className="absolute inset-0 w-full overflow-scroll sm:static sm:w-[600px] bg-gray-800 sm:rounded-xl">
+                <QuickSearch setOpen={setOpen} inputRef={inputRef} />
+              </div>
+            </OutsideClickHandler>
           </div>
         </div>
       </div>
