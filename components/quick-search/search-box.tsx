@@ -1,19 +1,10 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  ChangeEvent,
-  ComponentProps,
-} from "react";
-import { useSearchBox, UseSearchBoxProps } from "react-instantsearch-hooks";
+import { useEffect, useState, ChangeEvent } from "react";
+import { useSearchBox } from "react-instantsearch-hooks";
 import { ControlledSearchBox } from "./conrolled-search-box";
-
-// export type SearchBoxProps = ComponentProps<"div"> & UseSearchBoxProps;
 
 export function SearchBox(props) {
   const { query, refine, isSearchStalled } = useSearchBox(props);
   const [value, setValue] = useState(query);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   function onReset() {
     setValue("");
@@ -42,6 +33,7 @@ export function SearchBox(props) {
         onReset={onReset}
         placeholder={props.placeholder}
         value={value}
+        setShowHits={props.setShowHits}
       />
     </>
   );

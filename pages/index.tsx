@@ -19,7 +19,7 @@ export default function IndexPage({ nodes, mainMenu }: IndexPageProps) {
   return (
     <Layout menus={mainMenu.items}>
       <Head>
-        <title>Next.js for Drupal</title>
+        <title>Next Drupal</title>
         <meta
           name="description"
           content="A Next.js site powered by a Drupal backend."

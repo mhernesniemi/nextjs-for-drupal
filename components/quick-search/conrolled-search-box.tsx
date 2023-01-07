@@ -6,6 +6,7 @@ import {
   RefObject,
   ComponentProps,
   Fragment,
+  useEffect,
 } from "react";
 
 export type ControlledSearchBoxProps = ComponentProps<"div"> & {
@@ -16,6 +17,7 @@ export type ControlledSearchBoxProps = ComponentProps<"div"> & {
   onSubmit?(event: FormEvent): void;
   placeholder?: string;
   value: string;
+  setShowHits;
 };
 
 export function ControlledSearchBox({
@@ -26,8 +28,13 @@ export function ControlledSearchBox({
   onSubmit,
   placeholder,
   value,
+  setShowHits,
   ...props
 }: ControlledSearchBoxProps) {
+  useEffect(() => {
+    value ? setShowHits(true) : setShowHits(false), [onChange];
+  });
+
   return (
     <Fragment {...props}>
       <form action="" className="w-full" noValidate>
