@@ -10,36 +10,11 @@ interface NodeArticleTeaserProps {
 }
 
 export function NodeArticleTeaser({ node, ...props }: NodeArticleTeaserProps) {
+  console.log("Drupal node", node);
+
   return (
-    <article {...props}>
-      <Link
-        href={node.path.alias ? node.path.alias : ""}
-        className="text-blue-600 no-underline hover:underline"
-      >
-        <h2 className="mb-4 text-4xl font-bold">{node.title}</h2>
-      </Link>
-      <div className="mb-4 text-gray-600">
-        {node.uid?.display_name ? (
-          <span>
-            Posted by{" "}
-            <span className="font-semibold">{node.uid?.display_name}</span>
-          </span>
-        ) : null}
-        <span> - {formatDate(node.created)}</span>
-      </div>
-      {node.field_media_image && (
-        <figure className="my-4">
-          <Image
-            src={absoluteUrl(node.field_media_image.field_media_image.uri.url)}
-            width={768}
-            height={480}
-            alt="Decorative image"
-          />
-        </figure>
-      )}
-      <Button type="primary" url={node.path.alias}>
-        Read article
-      </Button>
-    </article>
+    <div {...props}>
+      <h2 className="mb-4 text-3xl font-bold">Node id: {node.id}</h2>
+    </div>
   );
 }

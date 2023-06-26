@@ -59,18 +59,10 @@ export async function getStaticProps(
           "uid.user_picture",
           "field_paragraphs",
         ])
-        .addFields("node--article", [
-          "title",
-          "path",
-          "field_media_image",
-          "status",
-          "created",
-          "field_paragraphs",
-        ])
         .addFields("media--image", ["field_media_image"])
         .addFields("file--file", ["uri", "resourceIdObjMeta"])
-        .addSort("created", "DESC")
-        .addPageLimit(10)
+        .addSort("created", "ASC")
+        .addPageLimit(5)
         .getQueryObject(),
     }
   );

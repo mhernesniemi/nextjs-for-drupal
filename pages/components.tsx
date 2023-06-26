@@ -328,7 +328,6 @@ export default function Components({ mainMenu }: ComponentsProps) {
           label="Label"
           value={selectValue}
           onChange={(event) => setSelectValue(event.target.value)}
-          activeValue={selectValue}
           options={[
             { name: "Choose country", value: "" },
             { name: "United States", value: "us" },

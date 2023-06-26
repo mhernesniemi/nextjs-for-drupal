@@ -37,7 +37,7 @@ export function ControlledSearchBox({
 
   return (
     <Fragment {...props}>
-      <form action="" className="w-full" noValidate>
+      <form action="" className="relative w-full" noValidate>
         <input
           className="w-full px-12 py-3 bg-gray-700 border border-gray-400 rounded placeholder:text-white"
           autoComplete="off"
@@ -52,7 +52,7 @@ export function ControlledSearchBox({
           onChange={onChange}
           ref={inputRef}
         />
-        <div className="absolute inset-y-0 flex items-center pl-3 pointer-events-none left-6">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <GoSearch className="w-6 h-6 text-white" />
         </div>
       </form>

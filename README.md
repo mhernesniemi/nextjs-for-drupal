@@ -2,8 +2,9 @@
 
 Starter kit for building your site with Next.js and Drupal. UI is built with Typescript, Headless UI, Tailwind CSS and InstantSearch.
 
-## How to use
+## Get started
 
+- Use node version 16
 - Copy and rename .env.example as .env.local
 - Install node packages by running `yarn`
 - Start dev mode by `yarn dev` or preview built project with `yarn preview`
