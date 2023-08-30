@@ -1,5 +1,5 @@
 import Link from "next/link";
-import classNames from "classnames";
+import cx from "classix";
 
 interface ButtonProps {
   type: "primary" | "secondary" | "outlined" | "disabled";
@@ -9,57 +9,26 @@ interface ButtonProps {
 }
 
 export default function Button({ type, children, url, onClick }: ButtonProps) {
-  const Tag = url ? Link : "button";
-
-  const classList = classNames(
-    "inline-flex",
-    "items-center",
-    "px-5",
-    "py-2.5",
-    "rounded-lg",
-    "focus:ring-4",
-    "focus:outline-none",
-    {
-      "text-white": type === "primary",
-      "bg-blue-700": type === "primary",
-      "hover:bg-blue-800": type === "primary",
-      "dark:bg-blue-600": type === "primary",
-      "dark:hover:bg-blue-700": type === "primary",
-      "dark:focus:ring-blue-800": type === "primary",
-    },
-    {
-      "text-white": type == "secondary",
-      "bg-amber-700": type === "secondary",
-      "hover:bg-amber-800": type === "secondary",
-      "dark:bg-amber-600": type === "secondary",
-      "dark:hover:bg-amber-700": type === "secondary",
-      "dark:focus:ring-amber-800": type === "secondary",
-    },
-    {
-      "text-blue-700": type == "outlined",
-      "border-2": type == "outlined",
-      "dark:text-white": type === "outlined",
-    },
-    {
-      "text-gray-500": type == "disabled",
-      "cursor-not-allowed": type == "disabled",
-      "bg-gray-200": type == "disabled",
-      "dark:bg-gray-800": type === "disabled",
-      "dark:text-gray-400": type == "disabled",
-    }
-  );
+  const Tag = url && type != "disabled" ? Link : "button";
 
   return (
-    <>
-      {type !== "disabled" ? (
-        <Tag href={url} className={classList} onClick={onClick}>
-          {children}
-        </Tag>
-      ) : (
-        <button className={classList} disabled>
-          {children}
-        </button>
-      )}
-    </>
+    <Tag
+      href={url}
+      className="max-w-[250px] break-words font-bold text-white uppercase"
+      onClick={onClick}
+    >
+      <div
+        className={cx(
+          "rounded px-3 py-2 text-center",
+          type == "primary" && "bg-blue-500 hover:bg-blue-600",
+          type == "secondary" && "bg-violet-500 hover:bg-violet-600",
+          type == "outlined" &&
+            "outline outline-1 outline-offset-[-1px] outline-black text-black",
+          type == "disabled" && "bg-gray-500 cursor-not-allowed"
+        )}
+      >
+        {children}
+      </div>
+    </Tag>
   );
 }

@@ -20,6 +20,7 @@ import Radio from "components/forms/radio";
 import Range from "components/forms/range";
 import Textarea from "components/forms/textarea";
 import Fieldset from "components/forms/fieldset";
+import ButtonContainer from "components/containers/button-container";
 
 interface ComponentsProps {
   mainMenu?: any;
@@ -67,24 +68,24 @@ export default function Components({ mainMenu }: ComponentsProps) {
         <Heading level="h2" size="large">
           Button
         </Heading>
-        <div className="flex flex-wrap gap-2 mb-5">
+        <ButtonContainer>
           <Button type="primary">Primary</Button>
-          <Button type="secondary">Secondary</Button>
+          <Button type="secondary">Secondary button</Button>
           <Button type="outlined">Outlined</Button>
           <Button type="disabled">Disabled</Button>
-        </div>
+        </ButtonContainer>
       </ContentSection>
 
       <ContentSection>
         <Heading level="h2" size="large">
-          Button as link
+          Button as a link
         </Heading>
-        <div className="flex flex-wrap gap-2 mb-5">
+        <ButtonContainer>
           <Button url="#" type="primary">
             Primary
           </Button>
           <Button url="#" type="secondary">
-            Secondary
+            Longname for testing secondary button
           </Button>
           <Button url="#" type="outlined">
             Outlined
@@ -92,7 +93,7 @@ export default function Components({ mainMenu }: ComponentsProps) {
           <Button url="#" type="disabled">
             Disabled
           </Button>
-        </div>
+        </ButtonContainer>
       </ContentSection>
 
       <ContentSection>
