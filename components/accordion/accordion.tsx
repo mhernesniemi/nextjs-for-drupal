@@ -1,31 +1,39 @@
-import { Disclosure } from "@headlessui/react";
 import Heading from "components/heading/heading";
-import { FaChevronUp } from "react-icons/fa";
+import PlusMinusIcon from "components/icons/plus-minus-icon";
+import { useId, useState } from "react";
+import AnimateHeight from "react-animate-height";
 
 interface AccordionProps {
-  items: any;
+  title: string;
+  body: any;
 }
 
-export default function Accordion({ items }: AccordionProps) {
+export default function Accordion({ title, body }: AccordionProps) {
+  const [open, setOpen] = useState(false);
+  const id = useId();
+
   return (
-    <>
-      {items.map((item, index) => (
-        <Disclosure key={index}>
-          {({ open }) => (
-            <>
-              <Disclosure.Button className="flex items-center justify-between w-full p-5 mb-3 font-medium text-left text-black border-2 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800">
-                <Heading level="h3" size="small">
-                  {item.title}
-                </Heading>
-                <FaChevronUp className={open ? "rotate-180 transform" : null} />
-              </Disclosure.Button>
-              <Disclosure.Panel className="px-5 pt-3 pb-8 text-black dark:text-white">
-                {item.body}
-              </Disclosure.Panel>
-            </>
-          )}
-        </Disclosure>
-      ))}
-    </>
+    <div>
+      <button
+        aria-expanded={open}
+        aria-controls={id}
+        onClick={() => setOpen(open ? false : true)}
+        className="flex items-center justify-between w-full p-5 mb-3 font-medium text-left border-2"
+      >
+        <Heading level="h3" size="small">
+          {title}
+        </Heading>
+        <div className="w-6 h-6">
+          <PlusMinusIcon
+            verticalClassName={open && "rotate-90"}
+            horizontalClassName={open && "rotate-180"}
+          />
+        </div>
+      </button>
+
+      <AnimateHeight id={id} duration={200} height={open ? "auto" : 0}>
+        <div className="px-5 pt-3 pb-8">{body}</div>
+      </AnimateHeight>
+    </div>
   );
 }

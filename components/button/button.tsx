@@ -19,7 +19,7 @@ export default function Button({ type, children, url, onClick }: ButtonProps) {
     >
       <div
         className={cx(
-          "rounded px-3 py-2 text-center",
+          "rounded px-4 py-3 text-center",
           type == "primary" && "bg-blue-500 hover:bg-blue-600",
           type == "secondary" && "bg-violet-500 hover:bg-violet-600",
           type == "outlined" &&
