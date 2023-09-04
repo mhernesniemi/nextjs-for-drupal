@@ -3,7 +3,7 @@ import Dropdown from "components/dropdown/dropdown";
 import MobileMenu from "components/mobile-menu/mobile-menu";
 import { useLanguageMenu } from "components/language-menu/language-menu";
 import DarkModeSwitcher from "components/dark-mode-switcher/dark-mode-switcher";
-import QuickSearchModal from "components/quick-search/quick-search-modal";
+import { BiSearch } from "react-icons/bi";
 
 interface HeaderProps {
   menu?: any;
@@ -21,8 +21,7 @@ export default function Header({ menu }: HeaderProps) {
       <div className="container flex items-center justify-between py-6 mx-auto">
         <div className="flex items-center gap-40">
           <Link href="/" passHref className="flex items-center gap-4">
-            <span className="text-5xl">🪐</span>
-            <span className="hidden text-2xl font-semibold lg:inline-block">
+            <span className="hidden text-2xl font-semibold border-2 border-black lg:inline-block">
               Next Drupal
             </span>
           </Link>
@@ -34,20 +33,20 @@ export default function Header({ menu }: HeaderProps) {
             ))}
           </div>
         </div>
-
+        <button className="inline-flex items-center py-3 pl-4 pr-12 border-2 bg-stone-200 hover:bg-white">
+          <BiSearch className="w-5 h-5 mr-3" /> Quick search
+        </button>
         <div className="flex items-center gap-8">
-          <QuickSearchModal />
           <div className="hidden lg:inline-block">
             <Dropdown
               label="Language"
               items={languageMenu}
-              background={false}
               directionLeft={true}
             />
           </div>
-          <div className="items-center hidden lg:flex">
+          {/* <div className="items-center hidden lg:flex">
             <DarkModeSwitcher />
-          </div>
+          </div> */}
           <div className="inline-block lg:hidden">
             <MobileMenu items={mobileMenu} />
           </div>

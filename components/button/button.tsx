@@ -19,11 +19,13 @@ export default function Button({ type, children, url, onClick }: ButtonProps) {
     >
       <div
         className={cx(
-          "rounded px-4 py-3 text-center",
-          type == "primary" && "bg-blue-500 hover:bg-blue-600",
-          type == "secondary" && "bg-violet-500 hover:bg-violet-600",
+          "px-4 py-3 text-center",
+          type == "primary" &&
+            "bg-blue-500 hover:bg-blue-600 active:bg-blue-700",
+          type == "secondary" &&
+            "bg-violet-500 hover:bg-violet-600 active:bg-violet-700",
           type == "outlined" &&
-            "outline outline-1 outline-offset-[-1px] outline-black text-black",
+            "outline outline-2 outline-offset-[-2px] outline-black text-black",
           type == "disabled" && "bg-gray-500 cursor-not-allowed"
         )}
       >

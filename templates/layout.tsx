@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { PreviewAlert } from "templates/preview-alert";
 import Header from "./header";
 

@@ -33,7 +33,7 @@ export default function MobileSubmenu({ item, title }: MobileSubmenuProps) {
           leaveFrom="ml-0"
           leaveTo="ml-[700px]"
         >
-          <div className="fixed top-0 left-0 z-10 w-screen h-screen bg-white dark:bg-gray-900 dark:text-white">
+          <div className="fixed top-0 left-0 z-10 w-screen h-screen bg-white">
             <button className="p-3 mt-2" onClick={() => setSubMenuOpen(false)}>
               <div className="flex items-center gap-4">
                 <CgChevronLeft className="w-10 h-10" />

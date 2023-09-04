@@ -18,7 +18,7 @@ export default function Accordion({ title, body }: AccordionProps) {
         aria-expanded={open}
         aria-controls={id}
         onClick={() => setOpen(open ? false : true)}
-        className="flex items-center justify-between w-full p-5 mb-3 font-medium text-left border-2"
+        className="flex items-center justify-between w-full p-5 mb-3 font-medium text-left border-2 hover:bg-stone-200"
       >
         <Heading level="h3" size="small">
           {title}
@@ -31,7 +31,7 @@ export default function Accordion({ title, body }: AccordionProps) {
         </div>
       </button>
 
-      <AnimateHeight id={id} duration={200} height={open ? "auto" : 0}>
+      <AnimateHeight id={id} duration={150} height={open ? "auto" : 0}>
         <div className="px-5 pt-3 pb-8">{body}</div>
       </AnimateHeight>
     </div>
