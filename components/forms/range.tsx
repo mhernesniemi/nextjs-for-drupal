@@ -1,4 +1,5 @@
 import { useId } from "react";
+import Label from "./label";
 
 interface RangeProps {
   label: string;
@@ -6,6 +7,7 @@ interface RangeProps {
   max?: number;
   value: any;
   onChange: any;
+  props?: any;
 }
 
 export default function Range({
@@ -14,17 +16,13 @@ export default function Range({
   min = 0,
   max = 100,
   onChange,
+  props,
 }: RangeProps) {
   const id = useId();
 
   return (
     <div>
-      <label
-        htmlFor={id}
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >
-        {label}
-      </label>
+      <Label id={id}>{label}</Label>
       <input
         id={id}
         type="range"
@@ -32,7 +30,8 @@ export default function Range({
         min={min}
         max={max}
         onChange={onChange}
-        className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+        className="w-full"
+        {...props}
       />
     </div>
   );

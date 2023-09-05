@@ -243,9 +243,7 @@ export default function Components({ mainMenu }: ComponentsProps) {
           checked={checkboxValue}
         />
         {checkboxValue && (
-          <div className="mt-5 text-white">
-            checkboxValue: {checkboxValue.toString()}
-          </div>
+          <div className="mt-5">checkboxValue: {checkboxValue.toString()}</div>
         )}
       </ContentSection>
 
@@ -256,13 +254,11 @@ export default function Components({ mainMenu }: ComponentsProps) {
         <Input
           label="Base input"
           value={inputValue}
-          onChange={() => (event) => {
+          onChange={(event) => {
             setInputValue(event.target.value);
           }}
         />
-        {inputValue && (
-          <div className="mt-5 text-white">inputValue: {inputValue}</div>
-        )}
+        {inputValue && <div className="mt-5">inputValue: {inputValue}</div>}
       </ContentSection>
 
       <ContentSection>
@@ -293,9 +289,7 @@ export default function Components({ mainMenu }: ComponentsProps) {
             activeValue={radioValue}
           />
         </Fieldset>
-        {radioValue && (
-          <div className="mt-5 text-white">radioValue: {radioValue}</div>
-        )}
+        {radioValue && <div className="mt-5">radioValue: {radioValue}</div>}
       </ContentSection>
 
       <ContentSection>
@@ -307,9 +301,7 @@ export default function Components({ mainMenu }: ComponentsProps) {
           value={rangeValue}
           onChange={(event) => setRangeValue(event.target.value)}
         />
-        {rangeValue && (
-          <div className="mt-5 text-white">rangeValue: {rangeValue}</div>
-        )}
+        {rangeValue && <div className="mt-5">rangeValue: {rangeValue}</div>}
       </ContentSection>
 
       <ContentSection>
@@ -328,26 +320,7 @@ export default function Components({ mainMenu }: ComponentsProps) {
             { name: "Germany", value: "de" },
           ]}
         />
-        {selectValue && (
-          <div className="mt-5 text-white">selectValue: {selectValue}</div>
-        )}
-      </ContentSection>
-
-      <ContentSection>
-        <Heading level="h2" size="large">
-          Switch
-        </Heading>
-        <Checkbox
-          label="Dark mode"
-          onChange={(event) => setSwitchValue(event.target.checked)}
-          checked={switchValue}
-          displaySwitch={true}
-        />
-        {switchValue && (
-          <div className="mt-5 text-white">
-            switchValue: {switchValue.toString()}
-          </div>
-        )}
+        {selectValue && <div className="mt-5">selectValue: {selectValue}</div>}
       </ContentSection>
 
       <ContentSection>
@@ -357,12 +330,12 @@ export default function Components({ mainMenu }: ComponentsProps) {
         <Textarea
           label="Label"
           value={textareaValue}
-          onChange={() => (event) => {
+          onChange={(event) => {
             setTextareaValue(event.target.value);
           }}
         />
         {textareaValue && (
-          <div className="mt-5 text-white">textareaValue: {textareaValue}</div>
+          <div className="mt-5">textareaValue: {textareaValue}</div>
         )}
       </ContentSection>
     </Layout>

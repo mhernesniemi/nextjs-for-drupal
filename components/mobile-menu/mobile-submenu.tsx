@@ -1,7 +1,6 @@
 import { CgChevronRight, CgChevronLeft } from "react-icons/cg";
-
 import { Transition } from "@headlessui/react";
-import { Fragment, useEffect, useId, useState } from "react";
+import { Fragment, useState } from "react";
 import Link from "next/link";
 import Heading from "components/heading/heading";
 

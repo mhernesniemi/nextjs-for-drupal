@@ -1,5 +1,4 @@
-import classNames from "classnames";
-
+import cx from "classix";
 interface FieldsetProps {
   children: any;
   legend?: string;
@@ -13,11 +12,7 @@ export default function Fieldset({
 }: FieldsetProps) {
   return (
     <fieldset>
-      <legend
-        className={classNames("mb-5", "font-bold", {
-          "sr-only": screenReadersOnly,
-        })}
-      >
+      <legend className={cx("mb-5 font-bold", screenReadersOnly && "sr-only")}>
         {legend}
       </legend>
       <div>{children}</div>
